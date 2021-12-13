@@ -63,10 +63,12 @@ function draw() {
     imageMode(CENTER);
     image(towerImg,tower.position.x, tower.position.y, 160,310);
   pop(); //Vuelve a la posición anterior 
+  
   //Bucle para sacar las balas d la matriz y colocarlas en el cañon 
   for(var i = 0; i < balls.length; i ++){
     showCannonBalls(balls[i]);
   }
+  
   //Mostrar cañon
   cannon.display();
 }
@@ -79,12 +81,15 @@ function keyPressed(){
     balls.push(cannonBall);
   }
 }
+
+//Mostrar balas 
 function showCannonBalls(ball){
   //Si se crea una pelota hay que mostrarla 
   if(ball){
     ball.display();
   }
 }
+
 //Al soltar la tecla 
 function keyReleased() {
   if (keyCode === DOWN_ARROW) {
