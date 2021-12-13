@@ -8,8 +8,8 @@ class Cannon {
         this.cannon_image = loadImage("assets/canon.png");
         this.cannon_base = loadImage("assets/cannonBase.png");
     }
-    display(){
-        
+    display(){//CLASE CANNON
+        console.log(this.angle);
         if(keyIsDown(RIGHT_ARROW) && this.angle < 70){
             this.angle +=1;
         }

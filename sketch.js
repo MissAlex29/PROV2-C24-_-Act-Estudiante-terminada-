@@ -10,18 +10,18 @@ var ground;
 var tower,towerImg;
 var cannon, cannonBall; 
 var balls = [];
-
 function preload() {
 //Precargar imagen para fondo en una variable 
 backgroundImg = loadImage("assets/background.gif");
 
 //Precargar imagen de la torre 
 towerImg = loadImage("assets/tower.png");
+
 }
 
 function setup() {
   canvas = createCanvas(1200, 600);
-  //Motor físico A
+  //Motor físico 
   engine = Engine.create();
   //Se crea el nuevo mundo 
   world = engine.world;
@@ -63,28 +63,32 @@ function draw() {
     imageMode(CENTER);
     image(towerImg,tower.position.x, tower.position.y, 160,310);
   pop(); //Vuelve a la posición anterior 
-  //Bucle para obtener las balas - fucntion draw 
-  for(var i = 0; i < balls.length; i++){
-    showCannonBalls(balls[i],i);
+  //Bucle para sacar las balas d la matriz y colocarlas en el cañon 
+  for(var i = 0; i < balls.length; i ++){
+    showCannonBalls(balls[i]);
   }
   //Mostrar cañon
   cannon.display();
-  }
-
+}
+//Al presionar la tecla 
 function keyPressed(){
   if(keyCode === DOWN_ARROW){
-    var cannonBall = new CannonBall(cannon.x,cannon.y);
+    //Crear una nueva bala con la clase 
+    var cannonBall = new CannonBall(cannon.x, cannon.y);
+    //Guardar la nueva bala en la matriz 
     balls.push(cannonBall);
   }
 }
-//Esta función tomara 2 parametros, bala e índice 
 function showCannonBalls(ball){
+  //Si se crea una pelota hay que mostrarla 
   if(ball){
     ball.display();
   }
 }
+//Al soltar la tecla 
 function keyReleased() {
   if (keyCode === DOWN_ARROW) {
-    balls[balls.length -1].shoot();
+    //Dispara las balas de la matriz 
+    balls[balls.length-1].shoot();
   }
 }
